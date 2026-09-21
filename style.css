@@ -149,15 +149,15 @@ a {
   font-family: var(--font-sans);
   color: var(--fg-muted);
   margin-top: var(--space-2);
-  max-width: 40ch;
+  white-space: nowrap;
 }
 
 .hero-tagline-secondary {
   font-family: var(--font-sans);
   color: var(--fg-muted);
   font-style: italic;
-  margin-top: var(--space-1);
-  max-width: 40ch;
+  margin-top: var(--space-3);
+  white-space: nowrap;
 }
 
 .hero-links {
@@ -420,6 +420,11 @@ main section.revealed {
 
   .hero-links {
     flex-wrap: wrap;
+  }
+
+  .hero-tagline,
+  .hero-tagline-secondary {
+    white-space: normal;
   }
 
   .cert-item {
