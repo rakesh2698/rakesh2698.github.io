@@ -223,3 +223,37 @@ a {
 .timeline-bullets li {
   margin-bottom: var(--space-1);
 }
+
+.cert-list {
+  list-style: none;
+}
+
+.cert-item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cert-name {
+  color: var(--fg);
+}
+
+.cert-meta {
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.edu-degree {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-1);
+}
+
+.edu-meta {
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
