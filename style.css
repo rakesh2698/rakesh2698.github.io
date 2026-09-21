@@ -303,6 +303,10 @@ a {
   font-family: var(--font-mono);
 }
 
+.contact-line a:hover {
+  text-shadow: 0 0 10px var(--accent);
+}
+
 .resume-button {
   display: inline-block;
   margin-top: var(--space-3);
@@ -311,11 +315,14 @@ a {
   border-radius: 4px;
   color: var(--accent);
   font-family: var(--font-mono);
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
 .resume-button:hover {
   background-color: var(--accent);
   color: var(--bg);
+  box-shadow: 0 0 14px var(--accent);
+  transform: translateY(-2px);
 }
 
 html {
