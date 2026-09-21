@@ -24,7 +24,7 @@
 
   <main>
     <section id="hero">
-      <p class="hero-prompt">~/rakesh-satpathy $ whoami</p>
+      <p class="hero-prompt"><span id="typed-text"></span><span class="cursor">█</span></p>
       <h1 class="hero-name">Rakesh Satpathy</h1>
       <p class="hero-title">&gt; DevOps / SRE Engineer</p>
       <p class="hero-tagline">SRE / DevOps Engineer — I turn fragile, manual infrastructure into automated, observable systems, reducing downtime and incidents at scale.</p>
@@ -37,7 +37,7 @@
       </div>
     </section>
     <section id="about">
-      <h2 class="section-heading">about</h2>
+      <h2 class="section-heading"><span class="heading-prompt">$</span> cat about.txt</h2>
       <p>
         Senior DevOps / Cloud Engineer with 5 years of hands-on experience in Linux,
         cloud infrastructure, infrastructure automation, network automation, CI/CD,
@@ -51,7 +51,7 @@
       </p>
     </section>
     <section id="skills">
-      <h2 class="section-heading">skills</h2>
+      <h2 class="section-heading"><span class="heading-prompt">$</span> ls skills/</h2>
 
       <div class="skill-group">
         <h3>Operating Systems</h3>
@@ -132,12 +132,12 @@
       </div>
     </section>
     <section id="experience">
-      <h2 class="section-heading">experience</h2>
+      <h2 class="section-heading"><span class="heading-prompt">$</span> systemctl status experience.service</h2>
 
       <article class="timeline-entry">
         <button class="timeline-toggle" aria-expanded="false">
           <div>
-            <h3>DevOps Engineer — Rakuten</h3>
+            <h3>DevOps Engineer — Rakuten <span class="status-tag status-active">[ ACTIVE ]</span></h3>
             <p class="timeline-dates">Dec 2025 – Present</p>
           </div>
           <span class="toggle-icon">+</span>
@@ -160,7 +160,7 @@
       <article class="timeline-entry">
         <button class="timeline-toggle" aria-expanded="false">
           <div>
-            <h3>Senior System Administrator — TCS</h3>
+            <h3>Senior System Administrator — TCS <span class="status-tag status-completed">[ COMPLETED ]</span></h3>
             <p class="timeline-dates">May 2022 – Dec 2025, Bangalore, India</p>
           </div>
           <span class="toggle-icon">+</span>
@@ -183,7 +183,7 @@
       </article>
     </section>
     <section id="certifications">
-      <h2 class="section-heading">certifications</h2>
+      <h2 class="section-heading"><span class="heading-prompt">$</span> ls -la certifications/</h2>
       <ul class="cert-list">
         <li class="cert-item">
           <span class="cert-name">Introduction to Cybersecurity</span>
@@ -212,13 +212,18 @@
       </ul>
     </section>
     <section id="contact">
-      <h2 class="section-heading">contact</h2>
+      <h2 class="section-heading"><span class="heading-prompt">$</span> cat contact.txt</h2>
       <p class="contact-line"><a href="mailto:rakeshsatpathy96085@gmail.com">rakeshsatpathy96085@gmail.com</a></p>
       <p class="contact-line"><a href="tel:+919348682207">+91 9348682207</a></p>
       <p class="contact-line"><a href="https://linkedin.com/in/rakesh-satpathy" target="_blank" rel="noopener">linkedin.com/in/rakesh-satpathy</a></p>
       <a class="resume-button" href="assets/Rakesh_Satpathy_DevOps.pdf" download>Download Résumé ↓</a>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <p>~/rakesh-satpathy $ exit</p>
+    <p class="footer-status">[ Process completed successfully ✓ ]</p>
+  </footer>
 
   <script src="script.js" defer></script>
 </body>

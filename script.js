@@ -1,3 +1,24 @@
+function initTypingEffect() {
+  const target = document.getElementById("typed-text");
+  const text = "~/rakesh-satpathy $ whoami";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reducedMotion) {
+    target.textContent = text;
+    return;
+  }
+
+  let i = 0;
+  const type = () => {
+    target.textContent = text.slice(0, i);
+    i += 1;
+    if (i <= text.length) {
+      setTimeout(type, 45);
+    }
+  };
+  type();
+}
+
 function initScrollSpy() {
   const sections = document.querySelectorAll("main section[id]");
   const navLinks = document.querySelectorAll(".nav-links a");
@@ -64,6 +85,7 @@ function initExperienceToggles() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initTypingEffect();
   initExperienceToggles();
   initScrollSpy();
   initRevealOnScroll();

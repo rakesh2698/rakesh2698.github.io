@@ -118,6 +118,23 @@ a {
   color: var(--fg-muted);
 }
 
+.cursor {
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}
+
 .hero-name {
   font-size: 3rem;
   margin: var(--space-2) 0;
@@ -155,12 +172,16 @@ a {
 
 .section-heading {
   font-family: var(--font-mono);
-  color: var(--accent);
-  font-size: 1.25rem;
-  text-transform: lowercase;
+  color: var(--fg);
+  font-size: 1.1rem;
   margin-bottom: var(--space-3);
   border-bottom: 1px solid var(--border);
   padding-bottom: var(--space-1);
+}
+
+.heading-prompt {
+  color: var(--accent);
+  margin-right: 0.4em;
 }
 
 #about p {
@@ -240,6 +261,22 @@ a {
 .timeline-toggle h3 {
   font-size: 1.1rem;
   transition: color 0.2s ease;
+}
+
+.status-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  margin-left: var(--space-1);
+  vertical-align: middle;
+}
+
+.status-active {
+  color: #3fb950;
+}
+
+.status-completed {
+  color: var(--fg-muted);
 }
 
 .timeline-toggle:hover h3 {
@@ -350,6 +387,20 @@ main section.revealed {
     transform: none;
     transition: none;
   }
+}
+
+.site-footer {
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  border-top: 1px solid var(--border);
+  padding: var(--space-4) var(--space-3);
+}
+
+.footer-status {
+  color: var(--accent);
+  margin-top: var(--space-1);
+  font-size: 0.85rem;
 }
 
 @media (max-width: 640px) {
