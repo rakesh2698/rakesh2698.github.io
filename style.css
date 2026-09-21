@@ -255,17 +255,6 @@ a {
   font-size: 0.85rem;
 }
 
-.edu-degree {
-  font-size: 1.1rem;
-  margin-bottom: var(--space-1);
-}
-
-.edu-meta {
-  color: var(--fg-muted);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-}
-
 .contact-line {
   margin-bottom: var(--space-1);
   font-family: var(--font-mono);
