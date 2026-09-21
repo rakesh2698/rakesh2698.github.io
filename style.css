@@ -121,6 +121,14 @@ a {
   max-width: 40ch;
 }
 
+.hero-tagline-secondary {
+  font-family: var(--font-sans);
+  color: var(--fg-muted);
+  font-style: italic;
+  margin-top: var(--space-1);
+  max-width: 40ch;
+}
+
 .hero-links {
   display: flex;
   gap: var(--space-3);
