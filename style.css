@@ -178,3 +178,48 @@ a {
   content: " ]";
   color: var(--fg-muted);
 }
+
+.timeline-entry {
+  border-left: 2px solid var(--border);
+  padding-left: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.timeline-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--fg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.timeline-toggle h3 {
+  font-size: 1.1rem;
+}
+
+.timeline-dates {
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.toggle-icon {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 1.25rem;
+}
+
+.timeline-bullets {
+  margin-top: var(--space-2);
+  padding-left: var(--space-3);
+  color: var(--fg-muted);
+}
+
+.timeline-bullets li {
+  margin-bottom: var(--space-1);
+}
