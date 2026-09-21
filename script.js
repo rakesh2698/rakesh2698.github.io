@@ -1,3 +1,24 @@
+function initScrollSpy() {
+  const sections = document.querySelectorAll("main section[id]");
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+          });
+        }
+      });
+    },
+    { rootMargin: "-50% 0px -50% 0px" }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
 function initExperienceToggles() {
   document.querySelectorAll(".timeline-toggle").forEach((button) => {
     button.addEventListener("click", () => {
@@ -12,4 +33,5 @@ function initExperienceToggles() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initExperienceToggles();
+  initScrollSpy();
 });

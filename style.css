@@ -277,3 +277,11 @@ a {
   background-color: var(--accent);
   color: var(--bg);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  scroll-padding-top: 4rem;
+}
