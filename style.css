@@ -304,3 +304,28 @@ main section.revealed {
     transition: none;
   }
 }
+
+@media (max-width: 640px) {
+  .nav-inner {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .nav-links {
+    gap: var(--space-2);
+    font-size: 0.85rem;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+  }
+
+  .hero-links {
+    flex-wrap: wrap;
+  }
+
+  .cert-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
