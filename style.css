@@ -126,3 +126,18 @@ a {
   gap: var(--space-3);
   margin-top: var(--space-4);
 }
+
+.section-heading {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 1.25rem;
+  text-transform: lowercase;
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-1);
+}
+
+#about p {
+  color: var(--fg);
+  max-width: 70ch;
+}
