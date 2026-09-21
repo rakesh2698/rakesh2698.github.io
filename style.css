@@ -257,3 +257,23 @@ a {
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }
+
+.contact-line {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-mono);
+}
+
+.resume-button {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.resume-button:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
