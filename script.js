@@ -35,6 +35,22 @@ function initRevealOnScroll() {
   sections.forEach((section) => observer.observe(section));
 }
 
+function initThemeToggle() {
+  const root = document.documentElement;
+  const toggle = document.getElementById("theme-toggle");
+  const stored = localStorage.getItem("theme");
+
+  if (stored) {
+    root.setAttribute("data-theme", stored);
+  }
+
+  toggle.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", current);
+    localStorage.setItem("theme", current);
+  });
+}
+
 function initExperienceToggles() {
   document.querySelectorAll(".timeline-toggle").forEach((button) => {
     button.addEventListener("click", () => {
@@ -51,4 +67,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initExperienceToggles();
   initScrollSpy();
   initRevealOnScroll();
+  initThemeToggle();
 });
