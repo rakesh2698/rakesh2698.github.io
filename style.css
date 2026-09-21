@@ -141,3 +141,40 @@ a {
   color: var(--fg);
   max-width: 70ch;
 }
+
+.skill-group {
+  margin-bottom: var(--space-3);
+}
+
+.skill-group h3 {
+  font-size: 0.95rem;
+  color: var(--fg-muted);
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.skill-badge {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  color: var(--fg);
+  background-color: var(--bg-alt);
+}
+
+.skill-badge::before {
+  content: "[ ";
+  color: var(--fg-muted);
+}
+
+.skill-badge::after {
+  content: " ]";
+  color: var(--fg-muted);
+}
