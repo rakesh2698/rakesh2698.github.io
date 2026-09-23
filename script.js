@@ -1,3 +1,90 @@
+function initBootSequence() {
+  const overlay = document.getElementById("boot-sequence");
+  const linesEl = document.getElementById("boot-lines");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const bootLines = [
+    "[ OK ] Loading rakesh-satpathy.identity",
+    "[ OK ] Starting sre-engineer.service",
+    "[ OK ] Mounting infrastructure...",
+    "[ OK ] Reducing incidents.service",
+    "[ OK ] Portfolio ready",
+  ];
+
+  if (reducedMotion) {
+    overlay.classList.add("boot-done");
+    overlay.setAttribute("hidden", "");
+    return;
+  }
+
+  let i = 0;
+  const showNextLine = () => {
+    if (i < bootLines.length) {
+      linesEl.textContent += (i > 0 ? "\n" : "") + bootLines[i];
+      i += 1;
+      setTimeout(showNextLine, 450);
+    } else {
+      setTimeout(() => {
+        overlay.classList.add("boot-done");
+        setTimeout(() => overlay.setAttribute("hidden", ""), 400);
+      }, 500);
+    }
+  };
+  showNextLine();
+}
+
+function initScrollProgress() {
+  const bar = document.getElementById("scroll-progress");
+  const update = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${percent}%`;
+  };
+  window.addEventListener("scroll", update);
+  update();
+}
+
+function initUptimeCounter() {
+  const el = document.getElementById("uptime-counter");
+  const start = Date.now();
+
+  const format = (ms) => {
+    const totalSeconds = Math.floor(ms / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  };
+
+  setInterval(() => {
+    el.textContent = format(Date.now() - start);
+  }, 1000);
+}
+
+function initCopyToClipboard() {
+  const toast = document.getElementById("toast");
+  let hideTimeout;
+
+  document.querySelectorAll(".copyable").forEach((el) => {
+    el.addEventListener("click", () => {
+      const value = el.getAttribute("data-copy-value");
+      navigator.clipboard.writeText(value).then(() => {
+        toast.textContent = `$ copied "${value}" to clipboard ✓`;
+        toast.removeAttribute("hidden");
+        requestAnimationFrame(() => toast.classList.add("show"));
+
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.setAttribute("hidden", ""), 200);
+        }, 2000);
+      });
+    });
+  });
+}
+
 function initTypingEffect() {
   const target = document.getElementById("typed-text");
   const text = "~/rakesh-satpathy $ whoami";
@@ -85,6 +172,10 @@ function initExperienceToggles() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initBootSequence();
+  initScrollProgress();
+  initUptimeCounter();
+  initCopyToClipboard();
   initTypingEffect();
   initExperienceToggles();
   initScrollSpy();

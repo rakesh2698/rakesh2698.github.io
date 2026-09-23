@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="boot-sequence" class="boot-sequence">
+    <pre id="boot-lines" class="boot-lines"></pre>
+  </div>
+
+  <div id="scroll-progress" class="scroll-progress"></div>
+
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">rsatpathy</a>
@@ -18,7 +24,10 @@
         <li><a href="#certifications">certs</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
-      <button id="theme-toggle" aria-label="Toggle light/dark theme">◐</button>
+      <div class="nav-right">
+        <span class="nav-uptime">uptime: <span id="uptime-counter">0d 0h 0m 0s</span></span>
+        <button id="theme-toggle" aria-label="Toggle light/dark theme">◐</button>
+      </div>
     </div>
   </nav>
 
@@ -30,8 +39,8 @@
       <p class="hero-tagline">SRE / DevOps Engineer — I turn fragile, manual infrastructure into automated, observable systems, reducing downtime and incidents at scale.</p>
       <p class="hero-tagline-secondary">Four nines of uptime, zero 3am panic — I automate so the pager sleeps and so do I. 😴</p>
       <div class="hero-links">
-        <a href="mailto:rakeshsatpathy96085@gmail.com">Email</a>
-        <a href="tel:+919348682207">Call</a>
+        <a href="mailto:rakeshsatpathy96085@gmail.com" class="copyable" data-copy-value="rakeshsatpathy96085@gmail.com">Email</a>
+        <a href="tel:+919348682207" class="copyable" data-copy-value="+91 9348682207">Call</a>
         <a href="https://linkedin.com/in/rakesh-satpathy" target="_blank" rel="noopener">LinkedIn</a>
         <a href="assets/Rakesh_Satpathy_DevOps.pdf" download>Résumé ↓</a>
       </div>
@@ -214,9 +223,9 @@
       </ul>
     </section>
     <section id="contact">
-      <h2 class="section-heading"><span class="heading-prompt">$</span> cat contact.txt</h2>
-      <p class="contact-line"><a href="mailto:rakeshsatpathy96085@gmail.com">rakeshsatpathy96085@gmail.com</a></p>
-      <p class="contact-line"><a href="tel:+919348682207">+91 9348682207</a></p>
+      <h2 class="section-heading"><span class="heading-prompt">$</span> less contact.txt</h2>
+      <p class="contact-line"><a href="mailto:rakeshsatpathy96085@gmail.com" class="copyable" data-copy-value="rakeshsatpathy96085@gmail.com">rakeshsatpathy96085@gmail.com</a></p>
+      <p class="contact-line"><a href="tel:+919348682207" class="copyable" data-copy-value="+91 9348682207">+91 9348682207</a></p>
       <p class="contact-line"><a href="https://linkedin.com/in/rakesh-satpathy" target="_blank" rel="noopener">linkedin.com/in/rakesh-satpathy</a></p>
       <a class="resume-button" href="assets/Rakesh_Satpathy_DevOps.pdf" download>Download Résumé ↓</a>
     </section>
@@ -226,6 +235,8 @@
     <p>~/rakesh-satpathy $ exit</p>
     <p class="footer-status">[ Process completed successfully ✓ ]</p>
   </footer>
+
+  <div id="toast" class="toast" hidden></div>
 
   <script src="script.js" defer></script>
 </body>

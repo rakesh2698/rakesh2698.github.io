@@ -49,6 +49,69 @@ a {
   transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
+.boot-sequence {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease-out;
+}
+
+.boot-sequence.boot-done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-lines {
+  font-family: var(--font-mono);
+  color: #3fb950;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-sequence {
+    transition: none;
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background-color: var(--accent);
+  z-index: 150;
+  transition: width 0.1s ease-out;
+}
+
+.toast {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: var(--bg-alt);
+  border: 1px solid var(--accent);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 200;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 #navbar {
   position: fixed;
   top: 0;
@@ -87,6 +150,17 @@ a {
 
 .nav-links a.active {
   color: var(--accent);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.nav-uptime {
+  color: var(--fg-muted);
+  font-size: 0.8rem;
 }
 
 #theme-toggle {
@@ -138,6 +212,35 @@ a {
 .hero-name {
   font-size: 3rem;
   margin: var(--space-2) 0;
+  background: linear-gradient(90deg, var(--fg), var(--accent), var(--fg));
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.hero-name:hover {
+  filter: drop-shadow(0 0 18px var(--accent));
+  transform: scale(1.03);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-name {
+    animation: none;
+  }
 }
 
 .hero-title {
@@ -412,6 +515,10 @@ main section.revealed {
   .nav-links {
     gap: var(--space-2);
     font-size: 0.85rem;
+  }
+
+  .nav-uptime {
+    display: none;
   }
 
   .hero-name {
