@@ -63,25 +63,43 @@ function initUptimeCounter() {
   }, 1000);
 }
 
-function initCopyToClipboard() {
-  const toast = document.getElementById("toast");
-  let hideTimeout;
+let toastHideTimeout;
 
+function showToast(message, duration = 2000) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.removeAttribute("hidden");
+  requestAnimationFrame(() => toast.classList.add("show"));
+
+  clearTimeout(toastHideTimeout);
+  toastHideTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.setAttribute("hidden", ""), 200);
+  }, duration);
+}
+
+function initCopyToClipboard() {
   document.querySelectorAll(".copyable").forEach((el) => {
     el.addEventListener("click", () => {
       const value = el.getAttribute("data-copy-value");
       navigator.clipboard.writeText(value).then(() => {
-        toast.textContent = `$ copied "${value}" to clipboard ✓`;
-        toast.removeAttribute("hidden");
-        requestAnimationFrame(() => toast.classList.add("show"));
-
-        clearTimeout(hideTimeout);
-        hideTimeout = setTimeout(() => {
-          toast.classList.remove("show");
-          setTimeout(() => toast.setAttribute("hidden", ""), 200);
-        }, 2000);
+        showToast(`$ copied "${value}" to clipboard ✓`);
       });
     });
+  });
+}
+
+function initSudoEasterEgg() {
+  const target = "sudo";
+  let buffer = "";
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key.length !== 1) return;
+    buffer = (buffer + e.key.toLowerCase()).slice(-target.length);
+    if (buffer === target) {
+      showToast("$ sudo access granted — you now have root on my résumé 🔓", 3000);
+      buffer = "";
+    }
   });
 }
 
@@ -176,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollProgress();
   initUptimeCounter();
   initCopyToClipboard();
+  initSudoEasterEgg();
   initTypingEffect();
   initExperienceToggles();
   initScrollSpy();
