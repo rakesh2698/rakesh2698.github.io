@@ -37,6 +37,11 @@ body {
   line-height: 1.6;
 }
 
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
 section {
   max-width: 960px;
   margin: 0 auto;
@@ -130,6 +135,25 @@ a {
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-mono);
+}
+
+.nav-logo {
+  animation: logo-glow-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes logo-glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    text-shadow: 0 0 8px var(--accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-logo {
+    animation: none;
+  }
 }
 
 .nav-links {
@@ -352,8 +376,31 @@ a {
 .skill-badge:hover {
   border-color: var(--accent);
   box-shadow: 0 0 8px var(--accent);
-  transform: translateY(-2px);
   cursor: default;
+  animation: wiggle 0.35s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-2px) rotate(-4deg);
+  }
+  75% {
+    transform: translateY(-2px) rotate(4deg);
+  }
+  100% {
+    transform: translateY(-2px) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-badge:hover {
+    animation: none;
+    transform: translateY(-2px);
+  }
 }
 
 .skill-badge::before {
@@ -466,24 +513,132 @@ a {
   margin-bottom: var(--space-1);
 }
 
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  background-color: var(--bg-alt);
+  opacity: 0;
+  transform: perspective(600px) translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.15s ease-out, border-color 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.project-card.card-revealed {
+  opacity: 1;
+  transform: perspective(600px) translateY(0);
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(45, 212, 191, 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.15);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card > * {
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    opacity: 1;
+    transform: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+}
+
+.project-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-1);
+}
+
+.project-header h3 {
+  font-size: 1.1rem;
+}
+
+.project-meta {
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+}
+
+.project-tags {
+  margin-bottom: var(--space-2);
+}
+
+.project-card p {
+  color: var(--fg);
+  margin-bottom: var(--space-1);
+  max-width: 70ch;
+}
+
+.project-card p strong {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
 .cert-list {
   list-style: none;
 }
 
 .cert-item {
+  position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-1);
-  padding: var(--space-1) var(--space-1);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
   border-bottom: 1px solid var(--border);
-  transition: background-color 0.2s ease, padding-left 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
   border-radius: 4px;
+}
+
+.cert-item::before {
+  content: "✓";
+  position: absolute;
+  left: var(--space-1);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .cert-item:hover {
   background-color: var(--bg-alt);
   box-shadow: inset 2px 0 0 var(--accent);
+  transform: translateX(6px);
+}
+
+.cert-item:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-item:hover {
+    transform: none;
+  }
 }
 
 .cert-name {
@@ -496,6 +651,16 @@ a {
   font-size: 0.85rem;
 }
 
+.contact-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  color: #3fb950;
+  font-size: 0.85rem;
+  margin-bottom: var(--space-2);
+}
+
 .contact-intro {
   color: var(--fg-muted);
   max-width: 60ch;
@@ -505,10 +670,56 @@ a {
 .contact-line {
   margin-bottom: var(--space-1);
   font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-icon {
+  display: inline-block;
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+  color: var(--accent);
+  margin-right: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, width 0.2s ease, margin-right 0.2s ease;
+}
+
+.contact-line:hover .contact-icon,
+.hero-links a:hover .contact-icon {
+  width: 1.2em;
+  opacity: 1;
+  transform: translateX(0);
+  margin-right: 0.4rem;
+}
+
+.copyable {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .contact-line a:hover {
   text-shadow: 0 0 10px var(--accent);
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--accent);
+  opacity: 0.4;
+  transform: scale(0);
+  animation: ripple-expand 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-expand {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 .resume-button {
@@ -527,6 +738,33 @@ a {
   color: var(--bg);
   box-shadow: 0 0 14px var(--accent);
   transform: translateY(-2px);
+}
+
+.download-arrow {
+  display: inline-block;
+  font-size: 1.3em;
+}
+
+.resume-button:hover .download-arrow,
+.hero-links a:hover .download-arrow {
+  animation: bounce-down 0.6s ease infinite;
+}
+
+@keyframes bounce-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot,
+  .resume-button:hover .download-arrow,
+  .hero-links a:hover .download-arrow {
+    animation: none;
+  }
 }
 
 html {
@@ -568,6 +806,68 @@ main section.revealed {
   color: var(--accent);
   margin-top: var(--space-1);
   font-size: 0.85rem;
+}
+
+.footer-exit {
+  margin-top: var(--space-2);
+  font-size: 0.8rem;
+}
+
+.footer-exit-code {
+  color: #3fb950;
+  font-weight: 600;
+}
+
+.man-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 400;
+  padding: var(--space-3);
+}
+
+.man-modal[hidden] {
+  display: none;
+}
+
+.man-modal-content {
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-4);
+  max-width: 640px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.15);
+}
+
+.man-page {
+  font-family: var(--font-mono);
+  color: var(--fg);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.man-modal-close {
+  display: block;
+  margin-top: var(--space-3);
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.man-modal-close:hover {
+  background-color: var(--accent);
+  color: var(--bg);
 }
 
 @media (max-width: 640px) {

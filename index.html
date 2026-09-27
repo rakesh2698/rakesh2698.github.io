@@ -31,11 +31,12 @@
 
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">rsatpathy</a>
+      <a href="#hero" class="nav-logo" id="nav-logo" title="click for man page">rsatpathy</a>
       <ul class="nav-links">
         <li><a href="#about">about</a></li>
         <li><a href="#skills">skills</a></li>
         <li><a href="#experience">experience</a></li>
+        <li><a href="#projects">projects</a></li>
         <li><a href="#certifications">certs</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
@@ -54,10 +55,10 @@
       <p class="hero-tagline">SRE / DevOps Engineer — I turn fragile, manual infrastructure into automated, observable systems, reducing downtime and incidents at scale.</p>
       <p class="hero-tagline-secondary">Four nines of uptime, zero 3am panic — I automate so the pager sleeps and so do I. 😴</p>
       <div class="hero-links">
-        <a href="mailto:rakeshsatpathy96085@gmail.com" class="copyable" data-copy-value="rakeshsatpathy96085@gmail.com">Email</a>
-        <a href="tel:+919348682207" class="copyable" data-copy-value="+91 9348682207">Call</a>
-        <a href="https://linkedin.com/in/rakesh-satpathy" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="assets/Rakesh_Satpathy_DevOps.pdf" download>Résumé ↓</a>
+        <a href="mailto:rakeshsatpathy96085@gmail.com" class="copyable" data-copy-value="rakeshsatpathy96085@gmail.com"><span class="contact-icon">✉</span>Email</a>
+        <a href="tel:+919348682207" class="copyable" data-copy-value="+91 9348682207"><span class="contact-icon">☏</span>Call</a>
+        <a href="https://linkedin.com/in/rakesh-satpathy" target="_blank" rel="noopener"><span class="contact-icon">🔗</span>LinkedIn</a>
+        <a href="assets/Rakesh_Satpathy_DevOps.pdf" download><span class="contact-icon">📄</span>Résumé <span class="download-arrow">↓</span></a>
       </div>
     </section>
     <section id="about">
@@ -214,6 +215,54 @@
         </ul>
       </article>
     </section>
+    <section id="projects">
+      <h2 class="section-heading"><span class="heading-prompt">$</span> ls projects/</h2>
+
+      <article class="project-card">
+        <div class="project-header">
+          <h3>Ansible Platform Migration</h3>
+          <span class="project-meta">Rakuten</span>
+        </div>
+        <div class="skill-badges project-tags">
+          <span class="skill-badge">Ansible</span>
+          <span class="skill-badge">Ansible Core 2.18</span>
+          <span class="skill-badge">Python</span>
+        </div>
+        <p><strong>Problem:</strong> A legacy Ansible 2.7 platform was falling behind the module ecosystem, causing playbook failures and putting automation reliability at risk across a large network fleet.</p>
+        <p><strong>Approach:</strong> Planned and executed a phased migration to Ansible Core 2.18, validating playbooks and collections against the new engine with structured pre/post checks on every production change.</p>
+        <p><strong>Impact:</strong> Cut playbook failures by 20% and modernized the automation platform for continued scaling.</p>
+      </article>
+
+      <article class="project-card">
+        <div class="project-header">
+          <h3>Monitoring Consolidation — Shinken → CheckMK</h3>
+          <span class="project-meta">Rakuten</span>
+        </div>
+        <div class="skill-badges project-tags">
+          <span class="skill-badge">CheckMK</span>
+          <span class="skill-badge">Grafana</span>
+          <span class="skill-badge">Prometheus</span>
+        </div>
+        <p><strong>Problem:</strong> A long-pending EOL project had left monitoring split across an aging Shinken deployment, creating alert accuracy gaps and technical debt across 3,000+ devices.</p>
+        <p><strong>Approach:</strong> Migrated monitoring to CheckMK and standardized Grafana dashboards and alerting rules across the network fleet, closing alerting gaps device by device.</p>
+        <p><strong>Impact:</strong> Closed out the long-pending EOL project, cut alert noise by 18%, and reduced missed incidents by 15%.</p>
+      </article>
+
+      <article class="project-card">
+        <div class="project-header">
+          <h3>Infrastructure-as-Code Adoption at Scale</h3>
+          <span class="project-meta">TCS · SAP</span>
+        </div>
+        <div class="skill-badges project-tags">
+          <span class="skill-badge">Ansible</span>
+          <span class="skill-badge">Chef</span>
+          <span class="skill-badge">Terraform</span>
+        </div>
+        <p><strong>Problem:</strong> Manual, inconsistent server configuration across a large SAP infrastructure footprint slowed delivery and introduced configuration drift risk.</p>
+        <p><strong>Approach:</strong> Introduced Ansible/Chef and Terraform-based IaC practices across the team, standardizing configuration for 2,500+ servers, and led a 5-person team through migrating 300+ legacy systems to the cloud.</p>
+        <p><strong>Impact:</strong> Cut deployment time by 75%, and the cloud migration delivered a 35% cost reduction with better scalability.</p>
+      </article>
+    </section>
     <section id="certifications">
       <h2 class="section-heading"><span class="heading-prompt">$</span> ls -la certifications/</h2>
       <ul class="cert-list">
@@ -245,18 +294,46 @@
     </section>
     <section id="contact">
       <h2 class="section-heading"><span class="heading-prompt">$</span> less contact.txt</h2>
+      <p class="contact-status"><span class="live-dot"></span>status: online</p>
       <p class="contact-intro">Always up for a conversation about SRE, DevOps, or keeping production boring — whether that's a role, an idea, or just swapping war stories. Reach out below; I reply faster than most of my alerts.</p>
-      <p class="contact-line"><a href="mailto:rakeshsatpathy96085@gmail.com" class="copyable" data-copy-value="rakeshsatpathy96085@gmail.com">rakeshsatpathy96085@gmail.com</a></p>
-      <p class="contact-line"><a href="tel:+919348682207" class="copyable" data-copy-value="+91 9348682207">+91 9348682207</a></p>
-      <p class="contact-line"><a href="https://linkedin.com/in/rakesh-satpathy" target="_blank" rel="noopener">linkedin.com/in/rakesh-satpathy</a></p>
-      <a class="resume-button" href="assets/Rakesh_Satpathy_DevOps.pdf" download>Download Résumé ↓</a>
+      <p class="contact-line"><span class="contact-icon">✉</span><a href="mailto:rakeshsatpathy96085@gmail.com" class="copyable" data-copy-value="rakeshsatpathy96085@gmail.com">rakeshsatpathy96085@gmail.com</a></p>
+      <p class="contact-line"><span class="contact-icon">☏</span><a href="tel:+919348682207" class="copyable" data-copy-value="+91 9348682207">+91 9348682207</a></p>
+      <p class="contact-line"><span class="contact-icon">🔗</span><a href="https://linkedin.com/in/rakesh-satpathy" target="_blank" rel="noopener">linkedin.com/in/rakesh-satpathy</a></p>
+      <a class="resume-button" href="assets/Rakesh_Satpathy_DevOps.pdf" download>Download Résumé <span class="download-arrow">↓</span></a>
     </section>
   </main>
 
   <footer class="site-footer">
     <p>~/rakesh-satpathy $ exit</p>
     <p class="footer-status">[ Process completed successfully ✓ ]</p>
+    <p class="footer-exit">$ echo $? <span class="footer-exit-code">0</span></p>
   </footer>
+
+  <div id="man-modal" class="man-modal" hidden>
+    <div class="man-modal-content">
+      <pre class="man-page">NAME
+    rakesh-satpathy - SRE / DevOps Engineer
+
+SYNOPSIS
+    rakesh-satpathy [--role sre|devops] [--observability] [--automate]
+
+DESCRIPTION
+    Senior DevOps / Cloud Engineer with 5 years of hands-on experience
+    in Linux, cloud infrastructure, automation, monitoring, and
+    production environments. Specializes in turning fragile, manual
+    infrastructure into automated, observable systems.
+
+    Known side effects include reduced downtime, quieter pagers, and
+    an unreasonable love of well-written runbooks.
+
+SEE ALSO
+    ansible(1), terraform(1), kubernetes(1), grafana(1), jenkins(1), sleep(8)
+
+AUTHOR
+    Written by Rakesh Satpathy. Bugs to rakeshsatpathy96085@gmail.com</pre>
+      <button id="man-modal-close" class="man-modal-close">[q] close</button>
+    </div>
+  </div>
 
   <div id="toast" class="toast" hidden></div>
 

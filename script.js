@@ -78,13 +78,30 @@ function showToast(message, duration = 2000) {
   }, duration);
 }
 
+function spawnRipple(el, x, y) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const ripple = document.createElement("span");
+  ripple.className = "ripple";
+  const size = Math.max(el.offsetWidth, el.offsetHeight) * 1.5;
+  ripple.style.width = `${size}px`;
+  ripple.style.height = `${size}px`;
+  ripple.style.left = `${x - size / 2}px`;
+  ripple.style.top = `${y - size / 2}px`;
+  el.appendChild(ripple);
+  ripple.addEventListener("animationend", () => ripple.remove());
+}
+
 function initCopyToClipboard() {
   document.querySelectorAll(".copyable").forEach((el) => {
-    el.addEventListener("click", () => {
+    el.addEventListener("click", (e) => {
       const value = el.getAttribute("data-copy-value");
       navigator.clipboard.writeText(value).then(() => {
         showToast(`$ copied "${value}" to clipboard ✓`);
       });
+
+      const rect = el.getBoundingClientRect();
+      spawnRipple(el, e.clientX - rect.left, e.clientY - rect.top);
     });
   });
 }
@@ -100,6 +117,36 @@ function initSudoEasterEgg() {
       showToast("$ sudo access granted — you now have root on my résumé 🔓", 3000);
       buffer = "";
     }
+  });
+}
+
+function initCtrlCEasterEgg() {
+  window.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "c") {
+      showToast("^C  process not terminated — I love my job too much.", 3000);
+    }
+  });
+}
+
+function initManModal() {
+  const trigger = document.getElementById("nav-logo");
+  const modal = document.getElementById("man-modal");
+  const closeButton = document.getElementById("man-modal-close");
+
+  const open = (e) => {
+    e.preventDefault();
+    modal.removeAttribute("hidden");
+  };
+  const close = () => modal.setAttribute("hidden", "");
+
+  trigger.addEventListener("click", open);
+  closeButton.addEventListener("click", close);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) close();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (modal.hasAttribute("hidden")) return;
+    if (e.key === "Escape" || e.key.toLowerCase() === "q") close();
   });
 }
 
@@ -161,6 +208,56 @@ function initRevealOnScroll() {
   sections.forEach((section) => observer.observe(section));
 }
 
+function initProjectCardReveal() {
+  const cards = document.querySelectorAll(".project-card");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reducedMotion) {
+    cards.forEach((card) => card.classList.add("card-revealed"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(cards).indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add("card-revealed"), index * 120);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  cards.forEach((card) => observer.observe(card));
+}
+
+function initProjectCardTilt() {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) return;
+
+  document.querySelectorAll(".project-card").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const percentX = (x / rect.width) * 100;
+      const percentY = (y / rect.height) * 100;
+
+      card.style.setProperty("--mouse-x", `${percentX}%`);
+      card.style.setProperty("--mouse-y", `${percentY}%`);
+
+      const rotateY = ((x / rect.width) - 0.5) * 10;
+      const rotateX = ((y / rect.height) - 0.5) * -10;
+      card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+  });
+}
+
 function initThemeToggle() {
   const root = document.documentElement;
   const toggle = document.getElementById("theme-toggle");
@@ -196,9 +293,13 @@ document.addEventListener("DOMContentLoaded", () => {
   initUptimeCounter();
   initCopyToClipboard();
   initSudoEasterEgg();
+  initCtrlCEasterEgg();
+  initManModal();
   initTypingEffect();
   initExperienceToggles();
   initScrollSpy();
   initRevealOnScroll();
+  initProjectCardReveal();
+  initProjectCardTilt();
   initThemeToggle();
 });
