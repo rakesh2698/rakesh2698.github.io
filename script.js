@@ -185,6 +185,7 @@ function initExperienceToggles() {
       button.setAttribute("aria-expanded", String(!expanded));
       bullets.hidden = expanded;
       button.querySelector(".toggle-icon").textContent = expanded ? "+" : "−";
+      button.querySelector(".toggle-label").textContent = expanded ? "view details" : "hide details";
     });
   });
 }

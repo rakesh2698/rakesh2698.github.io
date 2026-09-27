@@ -161,6 +161,35 @@ a {
 .nav-uptime {
   color: var(--fg-muted);
   font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3fb950;
+  box-shadow: 0 0 6px #3fb950;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
 }
 
 #theme-toggle {
@@ -351,14 +380,34 @@ a {
 .timeline-toggle {
   width: 100%;
   background: none;
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
   color: var(--fg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 0;
+  padding: var(--space-2);
   text-align: left;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.timeline-toggle:hover {
+  background-color: var(--bg-alt);
+  border-color: var(--border);
+}
+
+.toggle-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.toggle-label {
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  font-size: 0.8rem;
 }
 
 .timeline-toggle h3 {
@@ -376,10 +425,19 @@ a {
 
 .status-active {
   color: #3fb950;
+  animation: blink 1.2s step-end infinite;
 }
 
 .status-completed {
   color: var(--fg-muted);
+  animation: blink 1.2s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-active,
+  .status-completed {
+    animation: none;
+  }
 }
 
 .timeline-toggle:hover h3 {
@@ -436,6 +494,12 @@ a {
   color: var(--fg-muted);
   font-family: var(--font-mono);
   font-size: 0.85rem;
+}
+
+.contact-intro {
+  color: var(--fg-muted);
+  max-width: 60ch;
+  margin-bottom: var(--space-3);
 }
 
 .contact-line {
